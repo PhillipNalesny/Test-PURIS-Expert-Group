@@ -1,6 +1,6 @@
-PURIS
+**PURIS**
 The Predictive Unit Real-Time Information Service (PURIS) for Short Term Demand and Capacity Management
-Overview
+**Overview**
 
 The project is made of a backend and a frontend. Look into the respective folders and their documentation to get information about prerequirements and getting started guides.
 Dependencies
