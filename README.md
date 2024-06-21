@@ -1,49 +1,38 @@
-# Template Repository for custom distributions of Tractus-X EDC
+PURIS
+The Predictive Unit Real-Time Information Service (PURIS) for Short Term Demand and Capacity Management
+Overview
 
-## Quick start
+The project is made of a backend and a frontend. Look into the respective folders and their documentation to get information about prerequirements and getting started guides.
+Dependencies
 
-To get the example up-and-running, there are two possibilities:
+Beside the dependencies provided in the Helm Chart, the following dependencies have been tested for R24.05 to run PURIS:
+Application 	App Version 	Chart Version
+Tractus-X Connector 	0.7.1 	0.7.1
+Digital Twin Registry 	0.4.3 	0.4.11
+Known Knows
+Data Sovereignty
 
-- using Docker:
-  ```shell
-  ./gradlew dockerize # on x86/64 platforms
-  ./gradlew dockerize -Dplatform="linux/amd64" # on arm platforms, e.g. Apple Silicon
-  ```
-  Then there should be two new images in your image cache, `controlplane:latest` and `dataplane:latest`
+Currently, edc assets are always configured to match exactly one kind policy. These policies can be defined during deployment (see Admin Guide). Data is offered to each partner, who has been added to the PURIS FOSS's master data pool depending on the business relationship (partner is a customer / supplier).
 
-- using a native Java process
-  ```shell
-  ./gradlew build
-  java -jar launchers/[controlplane|dataplane]/build/libs/[controlplane|dataplane].jar
-  ```
+For productive use, the following features should be implemented:
 
-In both cases configuration must be supplied, either using Docker environment variables, or using Java
-application properties.
+    configuration of contracts including accepting and refusing contracts via UI
+    more user-friendly configuration of contracts including bi-lateral contracts
 
-## Directory structure
+License
 
-- `config`: contains the configuration file for the Checkstyle plugin
-- `extensions`: this is where your extension modules should be implemented
-- `gradle`: contains the Gradle Wrapper and the Version Catalog
-- `runtimes`: contains executable modules for the controlplane and data plane
+The project is licensed under the Apache License Version 2.0. For details on the licensing terms, see the LICENSE file.
+Notice for Docker Image
 
+Below you can find the information regarding Docker Notice for this frontend.
 
-## When developing only an extension
+    Frontend
+    Backend
 
-This is for develops whos focus is in developing a runtime module, which implements features and thereby extends
-the EDC- and Tractus-X EDC functionality. For example, implementing support for a new database technology could be
-implemented in one (or several) extensions.
+NOTICE
 
-If this is you, then you should focus mainly on the `extensions/` directory.
+This work is licensed under the Apache-2.0.
 
-## When developing a custom runtime
-
-This is for developers who want to package several extensions into a new _runtime_. A runtime in EDC-speak is a
-runnable application. We achieve this by packaging all class files into a fat JAR using the Shadow Plugin, but naturally
-other approaches exist (but are not covered here).
-
-If this is you, then you should focus mainly on the `runtimes/` directory.
-
-Both runtimes provided in this template are simply pulling in the official Tractus-X control plane and data plane
-modules.
-
+    SPDX-License-Identifier: Apache-2.0
+    SPDX-FileCopyrightText: 2024 Contributors to the Eclipse Foundation
+    Source URL: https://github.com/eclipse-tractusx/puris
